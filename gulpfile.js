@@ -18,7 +18,7 @@ var     gulp = require( 'gulp' ),
        clean = require( 'gulp-clean' ),
  runSequence = require( 'run-sequence' );
 
-// source and distribution folders 
+// source and distribution folders
 var  src = 'src/';
 var dist = path.resolve( 'dist/' );
 
@@ -97,7 +97,7 @@ gulp.task( 'minifyImg', function() {
 gulp.task( 'clean', function() {
   return gulp.src( dist, { read: false } )
     .pipe( clean() );
-}); 
+});
 
 // build all assets
 gulp.task( 'build', function() {
@@ -111,7 +111,7 @@ gulp.task( 'watch', function() {
 
     gulp.watch( src + '*.html', function() {
       gulp.run( 'embedlr' );
-    });    
+    });
 
     gulp.watch( [ src + 'js/*.js', './gulpfile.js' ], function() {
       gulp.run( 'lint', 'minifyJS' );
@@ -127,7 +127,7 @@ gulp.task( 'watch', function() {
 
     gulp.watch( [ src + 'img/*.png', src + 'img/*.gif', src + 'img/*.jpg' ], function() {
       gulp.run( 'minifyImg' );
-    });  
+    });
 
     gulp.watch( src + 'img/*.svg', function() {
       gulp.run( 'minifySvg', 'minifyImg' );

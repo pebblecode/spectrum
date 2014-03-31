@@ -1,10 +1,12 @@
-# Experiments base
+# Spectrum
 
-A base [gulp](http://gulpjs.com/) project for web experiments. By [Mark Durrant](https://twitter.com/m6_d6).
+A sound spectrum visualiser.
+
+By [Mark Durrant](https://twitter.com/m6_d6) and [Tak Tran](https://twitter.com/zlog).
 
 * * *
 
-### getting started
+### Getting started
 
 Install [node](http://nodejs.org/) & [gulp](http://gulpjs.com/)
 
@@ -22,10 +24,3 @@ Run Gulp
 (Starts local server, LiveReload, SASS compilation, JS hinting & minification, image minification)
 
 `gulp`
-
-### todo
-* seperate dev & dist folders. (unminified assets + liveReload) & (minified assets +  no liveReload)
-* add in gh-pages export
-* alert(sound) on errors
-* style success/error msgs
-* SASS only version?

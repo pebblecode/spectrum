@@ -104,7 +104,12 @@ Application.prototype.toggleInput = function() {
   var app = this;
   var element = document.getElementById('input');
   var callback = function() { app.play(); };
-  this.stop();
+
+  // Hack to get audio working
+  if (!(this.sourceFromInput() instanceof InputAudioSource)) {
+    this.stop();
+  }
+
   if (this.source instanceof UrlAudioSource) {
     element.value = "Use Audio URL";
     this.source = this.sourceFromInput();

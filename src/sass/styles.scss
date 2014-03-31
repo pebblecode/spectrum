@@ -44,31 +44,3 @@ body {
 svg {
 
 }
-
-.info {
-  width: 100%;
-  background: white;
-  position: fixed;
-  bottom: 0;
-  padding: 8px 20px 10px;
-}
-
-span {
-  font-size: 11px;
-  display: inline-block;
-  color: hsl(220, 20, 50);
-  border-left: 15px solid red;
-  padding-left: 3px;
-  margin-right: 30px;
-
-  em {
-    font-size: 8px;
-    color: hsl(220, 20, 45);
-  }
-
-  &:nth-child(1) { border-left-color: $colour5; }
-  &:nth-child(2) { border-left-color: $colour4; }
-  &:nth-child(3) { border-left-color: $colour3; }
-  &:nth-child(4) { border-left-color: $colour2; }
-  &:nth-child(5) { border-left-color: $colour1; }
-}

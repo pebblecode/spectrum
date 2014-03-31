@@ -22,10 +22,10 @@ $(document).ready(function() {
 
   function randomSA () {
     drawSA(
-      Math.floor(Math.random() * 20) + 10,
-      Math.floor(Math.random() * 20) + 30,
-      Math.floor(Math.random() * 20) + 50,
-      Math.floor(Math.random() * 20) + 70
+      Math.floor(Math.random() * 30) + 5,
+      Math.floor(Math.random() * 30) + 25,
+      Math.floor(Math.random() * 30) + 45,
+      Math.floor(Math.random() * 30) + 65
     );
   }
 

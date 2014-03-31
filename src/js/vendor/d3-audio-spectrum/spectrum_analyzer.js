@@ -24,8 +24,8 @@ SpectrumAnalyzer.prototype.reset = function() {
   this.audio.mono = new Float32Array(fftSize);
   this.fft = new FFT(fftSize, this.audio.sampleRate);
   var analyzer = this;
-  this.analysis.onaudioprocess = function(event) { 
-    analyzer.audioReceived(event); 
+  this.analysis.onaudioprocess = function(event) {
+    analyzer.audioReceived(event);
   };
 }
 
@@ -47,8 +47,8 @@ SpectrumAnalyzer.prototype.play = function(callback) {
 
 SpectrumAnalyzer.prototype.getInitialData = function() {
   var data = [];
-  for (var i = 0; i < this.length(); i++) { 
-    data.push(1); 
+  for (var i = 0; i < this.length(); i++) {
+    data.push(1);
   };
   return data;
 }
@@ -68,7 +68,7 @@ SpectrumAnalyzer.prototype.withCurve = function(callback) {
       segment += 1;
       segmentCounter = 0;
     }
-  }  
+  }
 }
 
 SpectrumAnalyzer.prototype.populateData = function(index, counter) {
@@ -79,7 +79,7 @@ SpectrumAnalyzer.prototype.populateData = function(index, counter) {
 
 SpectrumAnalyzer.prototype.audioReceived = function(event) {
   var analyzer = this;
-  this.audio.routeAudio(event);   
+  this.audio.routeAudio(event);
   this.fft.forward(this.audio.mono);
   this.withCurve(function(index, counter) { analyzer.populateData(index, counter) });
 }

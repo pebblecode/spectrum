@@ -41,7 +41,7 @@ SpectrumAnalyzerView.prototype.createChart = function() {
 }
 
 SpectrumAnalyzerView.prototype.reset = function() {
-  d3.select("svg").remove(); 
+  d3.select("svg").remove();
   this.createChart();
   this.initializeChart();
 }

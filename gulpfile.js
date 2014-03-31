@@ -51,16 +51,19 @@ gulp.task( 'lint', function() {
 
 // minify JS
 gulp.task( 'minifyJS', function() {
-  gulp.src( src + 'js/**/*.js' )
-    .pipe( uglify() )
+  gulp.src( [
+    src + 'js/**/*.js',
+    src + 'js/**/**/*.js'
+  ])
+    // .pipe( uglify() )
     .pipe( rename( { ext: '.min.js' } ) )
     .pipe( gulp.dest( dist + '/js' ) )
     .pipe( livereload( server ) );
 });
 
-// JSON
-gulp.task( 'json', function() {
-  gulp.src( src + 'data/**/*.json' )
+// DATA
+gulp.task( 'data', function() {
+  gulp.src( src + 'data/*' )
     .pipe( gulp.dest( dist + '/data' ) )
     .pipe( livereload( server ) );
 });
@@ -101,7 +104,7 @@ gulp.task( 'clean', function() {
 
 // build all assets
 gulp.task( 'build', function() {
-  return gulp.run( 'embedlr','lint', 'minifyJS', 'json', 'css', 'minifySvg', 'minifyImg' );
+  return gulp.run( 'embedlr','lint', 'minifyJS', 'data', 'css', 'minifySvg', 'minifyImg' );
 });
 
 // watch & liveReload
@@ -113,7 +116,12 @@ gulp.task( 'watch', function() {
       gulp.run( 'embedlr' );
     });
 
-    gulp.watch( [ src + 'js/*.js', './gulpfile.js' ], function() {
+    gulp.watch( [
+      src + 'js/*.js',
+      src + 'js/**/*.js',
+      src + 'js/**/**/*.js',
+      './gulpfile.js'
+    ], function() {
       gulp.run( 'lint', 'minifyJS' );
     });
 

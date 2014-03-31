@@ -6,7 +6,7 @@ By [Mark Durrant](https://twitter.com/m6_d6) and [Tak Tran](https://twitter.com/
 
 * * *
 
-### Getting started
+## Getting started
 
 Install [node](http://nodejs.org/) & [gulp](http://gulpjs.com/)
 
@@ -24,3 +24,7 @@ Run Gulp
 (Starts local server, LiveReload, SASS compilation, JS hinting & minification, image minification)
 
 `gulp`
+
+## Credits
+
+* Heavily based on [arirusso/d3-audio-spectru](https://github.com/arirusso/d3-audio-spectrum)

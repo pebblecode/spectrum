@@ -41,7 +41,9 @@ SpectrumAnalyzer.prototype.play = function(callback) {
   var analyzer = this;
   this.audio.play(function() {
     analyzer.audio.connectProcessor(analyzer.analysis);
-    callback();
+    if (callback) {
+      callback();
+    }
   });
 }
 

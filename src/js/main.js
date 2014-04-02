@@ -38,9 +38,7 @@ Application.prototype.onSourceLoaded = function(callback) {
 Application.prototype.play = function() {
   var element = document.getElementById('play');
   element.value = "Stop";
-  this.model.play(function() {
-    document.getElementById("loader").style.display = 'none';
-  });
+  this.model.play();
 };
 
 Application.prototype.togglePlay = function() {

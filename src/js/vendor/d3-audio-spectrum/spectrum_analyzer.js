@@ -2,9 +2,9 @@
 function SpectrumAnalyzer(audio) {
   this.audio = audio;
   this.analysis = this.audio.context.createJavaScriptNode(this.audio.bufferSize);
-  this.curve = 8;
+  this.curve = 12;
   this.intensity = 50;
-  this.setResolution(1);
+  this.setResolution(16);
 }
 
 SpectrumAnalyzer.prototype.setResolution = function(n) {

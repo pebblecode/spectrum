@@ -79,7 +79,7 @@ SpectrumAnalyzer.prototype.populateData = function(index, counter) {
 
 SpectrumAnalyzer.prototype.audioReceived = function(event) {
   var analyzer = this;
-  this.audio.routeAudio(event);
+  this.audio.routeAudio(event, false);
   this.fft.forward(this.audio.mono);
   this.withCurve(function(index, counter) { analyzer.populateData(index, counter) });
 }

@@ -19,7 +19,7 @@ Audio.prototype.setVolume = function(value) {
   this.gain.gain.value = value;
 }
 
-Audio.prototype.stop = function() { 
+Audio.prototype.stop = function() {
   this.source.stop();
   this.playing = false;
 }
@@ -35,19 +35,29 @@ Audio.prototype.play = function(callback) {
   });
 }
 
-Audio.prototype.routeAudio = function(event) {
+/**
+ * Route the audio
+ *
+ * @param  {Object} event
+ * @param  {Boolean} outputToSpeakers Whether to output to the speakers or not. Default is true.
+ */
+Audio.prototype.routeAudio = function(event, outputToSpeakers) {
+  var routeToSpeakers = (outputToSpeakers === undefined) ? true : outputToSpeakers;
   var input = {
     l: event.inputBuffer.getChannelData(0),
     r: event.inputBuffer.getChannelData(1)
   }
-  var output = { 
+  var output = {
     l: event.outputBuffer.getChannelData(0),
     r: event.outputBuffer.getChannelData(1)
   };
-			
+
   for (var i = 0; i < this.bufferSize; ++i) {
-    output.l[i] = input.l[i];
-    output.r[i] = input.r[i];
+    if (routeToSpeakers) {
+      output.l[i] = input.l[i];
+      output.r[i] = input.r[i];
+    }
+
     this.mono[i] = (input.l[i] + input.r[i]) / 2;
   }
 }

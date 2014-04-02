@@ -19,18 +19,18 @@
   })();
 
   function drawLandscape() {
-    a = canvas.rect(0, 0, '100%', fixedProportion).attr({fill: colors[0]}),
-    b = canvas.rect(0, 0, '080%', fixedProportion).attr({fill: colors[1]}),
-    c = canvas.rect(0, 0, '060%', fixedProportion).attr({fill: colors[2]}),
-    d = canvas.rect(0, 0, '040%', fixedProportion).attr({fill: colors[3]}),
+    a = canvas.rect(0, 0, '100%', fixedProportion).attr({fill: colors[0]});
+    b = canvas.rect(0, 0, '080%', fixedProportion).attr({fill: colors[1]});
+    c = canvas.rect(0, 0, '060%', fixedProportion).attr({fill: colors[2]});
+    d = canvas.rect(0, 0, '040%', fixedProportion).attr({fill: colors[3]});
     e = canvas.rect(0, 0, '020%', fixedProportion).attr({fill: colors[4]});
   }
 
   function drawPortrait() {
-    v = canvas.rect(0, 0, fixedProportion, '100%').attr({fill: colors[0]}),
-    w = canvas.rect(0, 0, fixedProportion, '080%').attr({fill: colors[1]}),
-    x = canvas.rect(0, 0, fixedProportion, '060%').attr({fill: colors[2]}),
-    y = canvas.rect(0, 0, fixedProportion, '040%').attr({fill: colors[3]}),
+    v = canvas.rect(0, 0, fixedProportion, '100%').attr({fill: colors[0]});
+    w = canvas.rect(0, 0, fixedProportion, '080%').attr({fill: colors[1]});
+    x = canvas.rect(0, 0, fixedProportion, '060%').attr({fill: colors[2]});
+    y = canvas.rect(0, 0, fixedProportion, '040%').attr({fill: colors[3]});
     z = canvas.rect(0, 0, fixedProportion, '020%').attr({fill: colors[4]});
   }
 

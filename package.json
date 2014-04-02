@@ -16,10 +16,12 @@
     "type": "git",
     "url": "https://github.com/pebblecode/spectrum"
   },
-  "devDependencies": {
+  "dependencies": {
     "logfmt": "^1.0.0-pre3",
     "express": "^3.4.8",
-    "ejs": "^0.8.5",
+    "ejs": "^0.8.5"
+  },
+  "devDependencies": {
     "gulp-util": "~2.2.12",
     "gulp": "~3.4.0",
     "gulp-sass": "~0.6.0",

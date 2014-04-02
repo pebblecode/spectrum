@@ -27,3 +27,24 @@
 
 // table styling
 @import "_tables.scss";
+
+
+//===============================================================================
+// Styles
+//===============================================================================
+
+body {
+  // Hack to get ride of extra space on the bottom
+  overflow: hidden;
+}
+
+#play {
+  background-color: white;
+  border: 1px solid black;
+
+  padding: 5px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}

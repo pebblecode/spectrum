@@ -4,7 +4,7 @@
   var colors = ['#F16663', '#F48D6C', '#F2E07B', '#8ABE9B', '#4A6D8B'];
   var a,b,c,d,e,v,w,x,y,z;
   var orientation;
-  var fixedProportion = "20%";
+  var fixedProportion = "100%";
 
   (function() {
     if (window.innerWidth / window.innerHeight >= 1){

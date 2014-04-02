@@ -71,6 +71,9 @@ Application.prototype.populateContext = function() {
 Application.load = function() {
   this.instance = new Application();
   this.instance.load();
+
+  // Start automatically
+  this.play();
 };
 
 Application.play = function() {

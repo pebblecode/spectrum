@@ -41,6 +41,56 @@
     b.animate({'width': stop4 + '%'}, 100);
   }
 
+  /**
+   * Find the normalized value for percentages (out of
+   * 100).
+   *
+   * @param  {Number} val Value
+   * @param  {Number} total
+   * @return {Number} Rounded down value of normalised value. Returns 0 if total is 0.
+   */
+  function normalizeToPercent(val, total) {
+    if (total === 0) {
+      return 0;
+    }
+
+    return Math.floor(val / total * 100);
+  }
+
+  /**
+   * Move bars with given data.
+   *
+   * Only takes the first 4 values.
+   *
+   * Ignore data that has less than 4 values.
+   *
+   * @param  {Array} data
+   */
+  function moveWithData( data ) {
+    if (data.length >= 4) {
+      var val1 = data[0];
+      var val2 = data[1];
+      var val3 = data[2];
+      var val4 = data[3];
+
+      var total = val1 + val2 + val3 + val4;
+
+      if (total > 0) {
+        // Normalise values from total
+        var normVal1 = normalizeToPercent(val1, total);
+        var normVal2 = normalizeToPercent(val2, total);
+        var normVal3 = normalizeToPercent(val3, total);
+        var normVal4 = normalizeToPercent(val4, total);
+
+        if (orientation == 'landscape') {
+          moveLandscape(normVal1, normVal2, normVal3, normVal4);
+        } else {
+          movePortrait(normVal1, normVal2, normVal3, normVal4);
+        }
+      }
+    }
+  }
+
   function movePortrait( stop1, stop2, stop3, stop4 ) {
     z.animate({'height': stop1 + '%'}, 100);
     y.animate({'height': stop2 + '%'}, 100);

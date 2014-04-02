@@ -64,6 +64,8 @@ SpectrumAnalyzerView.prototype.update = function() {
   var view = this;
   var data = this.model.data;
 
+  moveWithData(data);
+
   this.chart.selectAll("rect")
     .data(data)
     .attr("fill", function(d) { return view.color(d); })

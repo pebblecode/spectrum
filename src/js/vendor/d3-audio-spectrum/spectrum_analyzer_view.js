@@ -1,6 +1,6 @@
 function SpectrumAnalyzerView(model, selector) {
   this.model = model;
-  this.updateFreq = 200;
+  this.updateFreq = 100; // milliseconds
   this.initialize();
 }
 

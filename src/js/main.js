@@ -57,7 +57,7 @@ Application.prototype.togglePlay = function() {
 Application.prototype.stop = function() {
   this.audio.stop();
   var element = document.getElementById('play');
-  element.value = "Play";
+  element.value = "Start";
 }
 
 Application.prototype.populateContext = function() {

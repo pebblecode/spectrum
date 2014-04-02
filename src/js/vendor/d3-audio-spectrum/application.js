@@ -80,32 +80,12 @@ Application.prototype.play = function() {
   });
 }
 
-Application.prototype.setVolume = function(element) {
-  var fraction = parseInt(element.value) / parseInt(element.max);
-  var value = fraction * fraction;
-  this.audio.setVolume(value);
-}
-
-Application.prototype.setResolution = function(element) {
-  this.model.setResolution(48/element.value);
-  this.view.reset();
-}
-
-Application.prototype.setIntensity = function(element) {
-  this.model.intensity = Number(element.value);
-}
-
-Application.prototype.setCurve = function(element) {
-  this.model.setCurve(element.value);
-  this.view.reset();
-}
-
 Application.prototype.toggleInput = function() {
   var app = this;
   var element = document.getElementById('input');
   var callback = function() { app.play(); };
 
-  // Hack to get audio working
+  // Hack to get audio input working
   if (!(this.sourceFromInput() instanceof InputAudioSource)) {
     this.stop();
   }
@@ -151,22 +131,6 @@ Application.load = function() {
 
 Application.play = function() {
   this.instance.play();
-}
-
-Application.setVolume = function(element) {
-  this.instance.setVolume(element);
-}
-
-Application.setIntensity = function(element) {
-  this.instance.setIntensity(element);
-}
-
-Application.setResolution = function(element) {
-  this.instance.setResolution(element);
-}
-
-Application.setCurve = function(element) {
-  this.instance.setCurve(element);
 }
 
 Application.toggleInput = function() {

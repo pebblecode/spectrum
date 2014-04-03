@@ -5,6 +5,8 @@ function SpectrumAnalyzer(audio) {
   this.curve = 16;
   this.intensity = 50;
   this.setResolution(16);
+
+  this.volume = 0;
 }
 
 SpectrumAnalyzer.prototype.setResolution = function(n) {
@@ -79,9 +81,34 @@ SpectrumAnalyzer.prototype.populateData = function(index, counter) {
   this.data[counter] = amplitude;
 }
 
+/**
+ * Find the volume by averaging all the data points
+ *
+ * @return {Float} Volume
+ */
+SpectrumAnalyzer.prototype.getVolume = function() {
+  var length = this.data.length;
+
+  if (length === 0) {
+    return 0;
+  }
+
+  var total = 0;
+
+  for (var i = 0; i < length; i++) {
+    total = total + this.data[i];
+  }
+
+  return total / length;
+}
+
 SpectrumAnalyzer.prototype.audioReceived = function(event) {
   var analyzer = this;
   this.audio.routeAudio(event, false);
   this.fft.forward(this.audio.mono);
-  this.withCurve(function(index, counter) { analyzer.populateData(index, counter) });
+  this.withCurve(function(index, counter) {
+    analyzer.populateData(index, counter);
+  });
+
+  this.volume = this.getVolume();
 }

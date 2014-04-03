@@ -6,7 +6,9 @@ function SpectrumAnalyzer(audio) {
   this.intensity = 50;
   this.setResolution(16);
 
-  this.volume = 0;
+  this.min = 0;
+  this.max = 0;
+  this.average = 0;
 }
 
 SpectrumAnalyzer.prototype.setResolution = function(n) {
@@ -82,11 +84,59 @@ SpectrumAnalyzer.prototype.populateData = function(index, counter) {
 }
 
 /**
- * Find the volume by averaging all the data points
+ * Find the min of the data
  *
- * @return {Float} Volume
+ * @return {Number} min value
  */
-SpectrumAnalyzer.prototype.getVolume = function() {
+SpectrumAnalyzer.prototype.getDataMin = function() {
+  var length = this.data.length;
+
+  if (length === 0) {
+    return 0;
+  }
+
+  var min = 0;
+
+  for (var i = 0; i < length; i++) {
+    var val = this.data[i];
+    if (val < min) {
+      min = val;
+    }
+  }
+
+  return min;
+}
+
+/**
+ * Find the max of the data
+ *
+ * @return {Number} max value
+ */
+SpectrumAnalyzer.prototype.getDataMax = function() {
+  var length = this.data.length;
+
+  if (length === 0) {
+    return 0;
+  }
+
+  var max = 0;
+
+  for (var i = 0; i < length; i++) {
+    var val = this.data[i];
+    if (val > max) {
+      max = val;
+    }
+  }
+
+  return max;
+}
+
+/**
+ * Find the average of the data
+ *
+ * @return {Number}
+ */
+SpectrumAnalyzer.prototype.getDataAvg = function() {
   var length = this.data.length;
 
   if (length === 0) {
@@ -110,5 +160,7 @@ SpectrumAnalyzer.prototype.audioReceived = function(event) {
     analyzer.populateData(index, counter);
   });
 
-  this.volume = this.getVolume();
+  this.min = this.getDataMin();
+  this.max = this.getDataMax();
+  this.average = this.getDataAvg();
 }

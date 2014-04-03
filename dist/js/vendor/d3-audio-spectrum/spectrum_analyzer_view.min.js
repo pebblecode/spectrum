@@ -119,5 +119,11 @@ SpectrumAnalyzerView.prototype.update = function() {
 
   moveWithData.call(this, data);
 
+  // Debug values
+  var min = Math.floor(this.model.min);
+  var max = Math.floor(this.model.max);
+  var avg = Math.floor(this.model.average);
+  $("#debug").html(avg + ", " + min + " &rarr; " + max);
+
   requestAnimationFrame(this.update.bind(this));
 }

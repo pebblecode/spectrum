@@ -5,6 +5,7 @@
   var a,b,c,d,e,v,w,x,y,z;
   var orientation;
   var fixedProportion = "100%";
+  var duration = 500;
 
   (function() {
     if (window.innerWidth / window.innerHeight >= 1){
@@ -35,10 +36,10 @@
   }
 
   function moveLandscape( stop1, stop2, stop3, stop4 ) {
-    e.animate({'width': stop1 + '%'}, 100);
-    d.animate({'width': stop2 + '%'}, 100);
-    c.animate({'width': stop3 + '%'}, 100);
-    b.animate({'width': stop4 + '%'}, 100);
+    e.animate({'width': stop1 + '%'}, duration);
+    d.animate({'width': stop2 + '%'}, duration);
+    c.animate({'width': stop3 + '%'}, duration);
+    b.animate({'width': stop4 + '%'}, duration);
   }
 
   /**
@@ -92,10 +93,10 @@
   }
 
   function movePortrait( stop1, stop2, stop3, stop4 ) {
-    z.animate({'height': stop1 + '%'}, 100);
-    y.animate({'height': stop2 + '%'}, 100);
-    x.animate({'height': stop3 + '%'}, 100);
-    w.animate({'height': stop4 + '%'}, 100);
+    z.animate({'height': stop1 + '%'}, duration);
+    y.animate({'height': stop2 + '%'}, duration);
+    x.animate({'height': stop3 + '%'}, duration);
+    w.animate({'height': stop4 + '%'}, duration);
   }
 
   function randomMove () {

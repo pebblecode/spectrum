@@ -1,6 +1,6 @@
 function SpectrumAnalyzerView(model, selector) {
   this.model = model;
-  this.updateFreq = 100; // milliseconds
+  this.updateFreq = 500; // milliseconds
   this.initialize();
 }
 
@@ -14,11 +14,5 @@ SpectrumAnalyzerView.prototype.update = function() {
 
   moveWithData(data);
 
-  this.enqueueNextUpdate()
-}
-
-SpectrumAnalyzerView.prototype.enqueueNextUpdate = function() {
-  var view = this;
-  timeout = setTimeout(function() { view.update() }, this.updateFreq);
-  return timeout;
+  requestAnimationFrame(this.update.bind(this));
 }

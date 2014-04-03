@@ -56,13 +56,12 @@ Application.prototype.stop = function() {
 };
 
 Application.prototype.populateContext = function() {
-  if (! window.AudioContext) {
-    if (! window.webkitAudioContext) {
-      alert("Sorry, your browser is not supported.");
-      return;
-    }
-    window.AudioContext = window.webkitAudioContext;
+  var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+  if (AudioContext) {
     this.context = new AudioContext();
+  } else {
+    alert("Sorry, your browser is not supported.");
   }
 };
 

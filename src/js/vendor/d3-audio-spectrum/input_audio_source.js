@@ -3,7 +3,13 @@ function InputAudioSource(context) {
 }
 
 InputAudioSource.prototype.load = function(callback) {
-  navigator.webkitGetUserMedia( {audio:true}, this.streamCallback(callback) );
+  navigator.getUserMedia = (navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia);
+
+  navigator.getUserMedia({ audio:true },
+    this.streamCallback(callback));
 }
 
 InputAudioSource.prototype.play = function() {}

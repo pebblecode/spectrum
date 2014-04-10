@@ -111,7 +111,7 @@ SpectrumAnalyzerView.prototype.initialize = function() {
     drawPortrait.call(this);
     this.orientation = 'portrait';
   }
-}
+};
 
 SpectrumAnalyzerView.prototype.update = function() {
   var view = this;
@@ -126,4 +126,6 @@ SpectrumAnalyzerView.prototype.update = function() {
   $("#debug").html(avg + ", " + min + " &rarr; " + max);
 
   requestAnimationFrame(this.update.bind(this));
-}
+};
+
+module.exports = SpectrumAnalyzerView;

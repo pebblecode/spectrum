@@ -7,6 +7,7 @@
   ],
   "description": "a base project for experimentation",
   "scripts": {
+    "install": "napa",
     "start": "node index.js"
   },
   "engines": {
@@ -38,6 +39,11 @@
     "gulp-livereload": "~0.2.0",
     "tiny-lr": "0.0.5",
     "gulp-clean": "~0.2.4",
-    "run-sequence": "~0.3.6"
+    "run-sequence": "~0.3.6",
+    "gulp-browserify": "~0.5.0",
+    "napa": "~0.4.1"
+  },
+  "napa": {
+    "dsp": "corbanbrook/dsp.js"
   }
 }

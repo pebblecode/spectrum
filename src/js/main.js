@@ -1,3 +1,7 @@
+var SpectrumAnalyzer = require('./vendor/d3-audio-spectrum/spectrum_analyzer.js');
+var InputAudioSource = require('./vendor/d3-audio-spectrum/input_audio_source.js');
+var Audio = require('./vendor/d3-audio-spectrum/input_audio_source.js');
+
 function Application() {
   this.audio = undefined;
   this.context = undefined;
@@ -87,3 +91,7 @@ Application.stop = function() {
   this.instance.stop();
 };
 
+module.exports = Application;
+
+// Export as a global object
+window.Application = Application;

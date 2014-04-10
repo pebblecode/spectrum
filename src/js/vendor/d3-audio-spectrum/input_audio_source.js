@@ -29,10 +29,10 @@ function InputAudioSource(context) {
       min: 300,
       max: 3400
     }
-  }
+  };
 
   // Mid human audible range
-  this.freq = freqRanges["voice"];
+  this.freq = freqRanges.voice;
 }
 
 InputAudioSource.prototype.load = function(callback) {
@@ -43,13 +43,13 @@ InputAudioSource.prototype.load = function(callback) {
 
   navigator.getUserMedia({ audio:true },
     this.streamCallback(callback));
-}
+};
 
-InputAudioSource.prototype.play = function() {}
+InputAudioSource.prototype.play = function() {};
 
 InputAudioSource.prototype.stop = function() {
   this.disconnect();
-}
+};
 
 InputAudioSource.prototype.streamCallback = function(callback) {
   var source = this;
@@ -76,14 +76,15 @@ InputAudioSource.prototype.streamCallback = function(callback) {
     addBandPassFilter();
 
     callback();
-  }
-}
+  };
+};
 
 InputAudioSource.prototype.connect = function(connector) {
   this.source.connect(connector);
-}
+};
 
 InputAudioSource.prototype.disconnect = function() {
   this.source.disconnect();
-}
+};
 
+module.exports = InputAudioSource;

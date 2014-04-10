@@ -1,4 +1,9 @@
-// This is where the audio is analyzed
+var dsp = require('dsp/dsp');
+var FFT = dsp.FFT;
+
+/**
+ * This is where the audio is analyzed
+ */
 function SpectrumAnalyzer(audio) {
   this.audio = audio;
   this.analysis = this.audio.context.createJavaScriptNode(this.audio.bufferSize);
@@ -14,12 +19,12 @@ function SpectrumAnalyzer(audio) {
 SpectrumAnalyzer.prototype.setResolution = function(n) {
   this.resolution = this.linLog(this.audio.bufferSize / n);
   this.reset();
-}
+};
 
 SpectrumAnalyzer.prototype.setCurve = function(n) {
   this.curve = n;
   this.reset();
-}
+};
 
 SpectrumAnalyzer.prototype.reset = function() {
   this.data = [];
@@ -31,15 +36,15 @@ SpectrumAnalyzer.prototype.reset = function() {
   this.analysis.onaudioprocess = function(event) {
     analyzer.audioReceived(event);
   };
-}
+};
 
 SpectrumAnalyzer.prototype.linLog = function(n) {
   return Math.pow( 2, Math.round( Math.log( n ) / Math.log( 2 ) ) );
-}
+};
 
 SpectrumAnalyzer.prototype.length = function() {
   return this.fft.spectrum.length/2;
-}
+};
 
 SpectrumAnalyzer.prototype.play = function(callback) {
   var analyzer = this;
@@ -49,15 +54,15 @@ SpectrumAnalyzer.prototype.play = function(callback) {
       callback();
     }
   });
-}
+};
 
 SpectrumAnalyzer.prototype.getInitialData = function() {
   var data = [];
   for (var i = 0; i < this.length(); i++) {
     data.push(1);
-  };
+  }
   return data;
-}
+};
 
 SpectrumAnalyzer.prototype.withCurve = function(callback) {
   var segmentLength = this.length() / this.curve;
@@ -75,13 +80,13 @@ SpectrumAnalyzer.prototype.withCurve = function(callback) {
       segmentCounter = 0;
     }
   }
-}
+};
 
 SpectrumAnalyzer.prototype.populateData = function(index, counter) {
   amplitude = this.fft.spectrum[index] * (this.intensity * 200);
   this.delta[counter] = amplitude - this.data[counter];
   this.data[counter] = amplitude;
-}
+};
 
 /**
  * Find the min of the data
@@ -105,7 +110,7 @@ SpectrumAnalyzer.prototype.getDataMin = function() {
   }
 
   return min;
-}
+};
 
 /**
  * Find the max of the data
@@ -129,7 +134,7 @@ SpectrumAnalyzer.prototype.getDataMax = function() {
   }
 
   return max;
-}
+};
 
 /**
  * Find the average of the data
@@ -150,7 +155,7 @@ SpectrumAnalyzer.prototype.getDataAvg = function() {
   }
 
   return total / length;
-}
+};
 
 SpectrumAnalyzer.prototype.audioReceived = function(event) {
   var analyzer = this;
@@ -163,4 +168,6 @@ SpectrumAnalyzer.prototype.audioReceived = function(event) {
   this.min = this.getDataMin();
   this.max = this.getDataMax();
   this.average = this.getDataAvg();
-}
+};
+
+module.exports = SpectrumAnalyzer;

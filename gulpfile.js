@@ -16,7 +16,8 @@ var     gulp = require( 'gulp' ),
       svgmin = require( 'gulp-svgmin' ),
     imagemin = require( 'gulp-imagemin' ),
        clean = require( 'gulp-clean' ),
- runSequence = require( 'run-sequence' );
+ runSequence = require( 'run-sequence' ),
+  browserify = require( 'gulp-browserify' );
 
 // source and distribution folders
 var  src = 'src/';
@@ -44,17 +45,30 @@ gulp.task( 'embedlr', function() {
 
 // JShint
 gulp.task( 'lint', function() {
-  gulp.src( src + 'js/*.js' )
+  gulp.src( [
+    src + 'js/*.js',
+    src + 'js/vendor/d3-audio-spectrum/*.js',
+  ])
     .pipe( jshint() )
     .pipe( jshint.reporter( stylish ) );
 });
 
-// minify JS
-gulp.task( 'minifyJS', function() {
+// Process JS
+gulp.task( 'js', function() {
   gulp.src( [
-    src + 'js/**/*.js',
-    src + 'js/**/**/*.js'
+    src + 'js/vendor/modernizr.js'
   ])
+    // .pipe( uglify() )
+    .pipe( rename( { ext: '.min.js' } ) )
+    .pipe( gulp.dest( dist + '/js' ) );
+
+  gulp.src( [
+    src + 'js/main.js'
+  ])
+    .pipe(browserify({
+      insertGlobals : true,
+      debug : !gulp.env.production
+    }))
     // .pipe( uglify() )
     .pipe( rename( { ext: '.min.js' } ) )
     .pipe( gulp.dest( dist + '/js' ) )
@@ -104,7 +118,7 @@ gulp.task( 'clean', function() {
 
 // build all assets
 gulp.task( 'build', function() {
-  return gulp.run( 'embedlr','lint', 'minifyJS', 'data', 'css', 'minifySvg', 'minifyImg' );
+  return gulp.run( 'embedlr','lint', 'js', 'data', 'css', 'minifySvg', 'minifyImg' );
 });
 
 // watch & liveReload
@@ -122,7 +136,7 @@ gulp.task( 'watch', function() {
       src + 'js/**/**/*.js',
       './gulpfile.js'
     ], function() {
-      gulp.run( 'lint', 'minifyJS' );
+      gulp.run( 'lint', 'js' );
     });
 
     gulp.watch( src + 'data/*.json', function() {
